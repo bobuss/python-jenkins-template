@@ -32,10 +32,11 @@ This was inspirated by [the PHP jenkins template project](http://jenkins-php.org
 
 ## Jenkins Plugins
 
-* Jenkins SLOCCount Plug-in
-* Jenkins xUnit plugin
-* Jenkins Violations plugin
-* Warnings Plug-in
+* [Jenkins SLOCCount Plug-in](http://wiki.jenkins-ci.org/display/JENKINS/SLOCCount+Plugin)
+* [Jenkins xUnit plugin](http://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin)
+* [Jenkins Violations plugin](http://wiki.jenkins-ci.org/display/JENKINS/Violations)
+* [Warnings Plug-in](https://wiki.jenkins-ci.org/display/JENKINS/Warnings+Plugin)
+* [Cobertura plugin](https://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin)
 
 
 ## Jenkins (sort of) configuration
