@@ -43,6 +43,34 @@ This was inspirated by [the PHP jenkins template project](http://jenkins-php.org
 
 Install the hudson.plugins.warnings.WarningsPublisher.xml file on the jenkins server.
 
+Or, If you prefer to click :
+
+1.  Go to Manage Jenkins -> Configure System
+2.  Scroll down to Compiler Warnings -> Parsers
+3.  Add a new parser with the following details:
+
+    1.  Name and others descriptive fields:
+
+            PyFlakes
+
+    2.  Regular Expression:
+
+            ^\s*(.*):(\d+):\s*(.*)$
+
+    3.  Mapping Script:
+
+            import hudson.plugins.warnings.parser.Warning
+
+            String fileName = matcher.group(1)
+            String lineNumber = matcher.group(2)
+            String message = matcher.group(3)
+
+            return new Warning(fileName, Integer.parseInt(lineNumber), "Dynamic Parser", "-", message);
+
+    4.  Example Log Message:
+
+            src/fbproxy/fbresponse.py:2: 'json' imported but unused
+
 
 ## In your project
 
