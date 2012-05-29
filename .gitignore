@@ -1,0 +1,6 @@
+*.sc
+*.log
+output.xml
+xunit.xml
+coverage.xml
+.coverage

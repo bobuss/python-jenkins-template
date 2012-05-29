@@ -1,12 +1,14 @@
 # Jenkins python template
 
-Use those files to scaffold your Continuous Integration Server with your python projects.
+Use these files to scaffold your Continuous Integration Server within your python projects.
 
 This was inspirated by [the PHP jenkins template project](http://jenkins-php.org/) ([github](https://github.com/sebastianbergmann/php-jenkins-template)).
 
 
 
 ## Requirements
+
+On your jenkins instance, you must install some QA python tools:
 
 * [SLOCCount](http://www.dwheeler.com/sloccount/)
 
@@ -32,6 +34,8 @@ This was inspirated by [the PHP jenkins template project](http://jenkins-php.org
 
 ## Jenkins Plugins
 
+You also need to install some plugins in your jenkins server:
+
 * [Jenkins SLOCCount Plug-in](http://wiki.jenkins-ci.org/display/JENKINS/SLOCCount+Plugin)
 * [Jenkins xUnit plugin](http://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin)
 * [Jenkins Violations plugin](http://wiki.jenkins-ci.org/display/JENKINS/Violations)
@@ -39,25 +43,25 @@ This was inspirated by [the PHP jenkins template project](http://jenkins-php.org
 * [Cobertura plugin](https://wiki.jenkins-ci.org/display/JENKINS/Cobertura+Plugin)
 
 
-## Jenkins (sort of) configuration
+## Jenkins configuration
 
-Install the hudson.plugins.warnings.WarningsPublisher.xml file on the jenkins server.
+Install the hudson.plugins.warnings.WarningsPublisher.xml file on the jenkins server, then reload the configuration.
 
-Or, If you prefer to click :
+Or, if you prefer to click in the web interface:
 
-1.  Go to Manage Jenkins -> Configure System
-2.  Scroll down to Compiler Warnings -> Parsers
-3.  Add a new parser with the following details:
+1. Go to Manage Jenkins -> Configure System
+2. Scroll down to Compiler Warnings -> Parsers
+3. Add a new parser with the following details:
 
-    1.  Name and others descriptive fields:
+    1. Name and others descriptive fields:
 
             PyFlakes
 
-    2.  Regular Expression:
+    2. Regular Expression:
 
             ^\s*(.*):(\d+):\s*(.*)$
 
-    3.  Mapping Script:
+    3. Mapping Script:
 
             import hudson.plugins.warnings.parser.Warning
 
@@ -72,9 +76,38 @@ Or, If you prefer to click :
             src/fbproxy/fbresponse.py:2: 'json' imported but unused
 
 
+## Using the Job Template
+
+1. Check out the `python-jenkins-template` project from Git:
+
+        cd $JENKINS_HOME/jobs
+        git clone git://github.com/bobuss/python-jenkins-template.git python-template
+        chown -R jenkins:nogroup python-template/
+
+2. Reload Jenkins' configuration, for instance using the Jenkins CLI:
+
+        java -jar jenkins-cli.jar -s http://<jenkins_address>:<jenkins_port> reload-configuration
+
+3. Click on "New Job".
+
+4. Enter a "Job name".
+
+5. Select "Copy existing job" and enter "python-template" into the "Copy from" field.
+
+6. Click "OK".
+
+7. Disable the "Disable Build" option.
+
+8. Fill in your "Source Code Management" information.
+
+9. Configure a "Build Trigger", for instance "Poll SCM".
+
+10. Click "Save".
+
+
 ## In your project
 
-Get the Makefile and adapt it (source directory, tasks). Make sure to generate the right files (or change the config):
+Get the `Makefile` and adapt it (source directory, tasks). Make sure to generate the right files (or change the jenkins config):
 
 * pyflakes.log
 * pylint.log
@@ -82,6 +115,8 @@ Get the Makefile and adapt it (source directory, tasks). Make sure to generate t
 * output.xml
 * coverage.xml
 * xunit.xml
+
+You can also adapt your `.gitignore` file, in order to avoid to commit the generated files.
 
 
 ## Some other resources
