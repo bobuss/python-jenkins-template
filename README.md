@@ -24,7 +24,7 @@ On your jenkins instance, you must install some QA python tools:
 
 * [nosetests](http://readthedocs.org/docs/nose/en/latest/) & [nosexcover](http://pypi.python.org/pypi/nosexcover)
 
-        $ (sudo) pip install nosetests
+        $ (sudo) pip install nose
         $ (sudo) pip install nosexcover
 
 * [pyflakes](http://pypi.python.org/pypi/pyflakes)
