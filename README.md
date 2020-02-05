@@ -121,7 +121,6 @@ You can also adapt your `.gitignore` file, in order to avoid to commit the gener
 
 ## Some other resources
 
-* [http://www.wallix.org/2011/06/29/how-to-use-jenkins-for-python-development/](http://www.wallix.org/2011/06/29/how-to-use-jenkins-for-python-development/)
 * [http://www.alexconrad.org/2011/10/jenkins-and-python.html](http://www.alexconrad.org/2011/10/jenkins-and-python.html)
 
 
